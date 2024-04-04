@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Vector;
 
 public class UnitManager {
-	private Random ran = new Random();
+	static Random ran = new Random();
 	
 	Vector<Player> playerList = new Vector<>();
 	Vector<Unit> monsterList = new Vector<>();
@@ -12,12 +12,10 @@ public class UnitManager {
 	String path = "textRpg.";
 	String[] monsters = {"MonsterWolf", "MonsterGhost", "MonsterBear", "MonsterLion", "MonsterDragon"};
 	
+	Player player = new Player();
+	
 	public UnitManager() {
-//		playerList.add(new Player("name1", 900, 50));
-//		playerList.add(new Player("name2", 800, 60));
-//		playerList.add(new Player("name3", 700, 70));
-//		playerList.add(new Player("name4", 600, 80));
-//		playerList.add(new Player("name5", 500, 90));
+		
 	}
 	
 	public Vector<Player> getPlayerList() {
