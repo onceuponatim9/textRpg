@@ -99,16 +99,24 @@ public class Guild {
 	
 	private String getName() {
 		String[] nameList = getNameList();
+		String name = "";
 		int size = nameList.length;
 		int rIdx = -1;
 		
-		for(int i = 0; i < guildList.size(); i++) {
+		while(true) {
 			rIdx = UnitManager.ran.nextInt(size);
-			if(nameList[rIdx].equals(guildList.get(i).name))
-				i--;
+			boolean isDupl = false;
+			
+			for(int i = 0; i < guildList.size(); i++) {
+				if(nameList[rIdx].equals(guildList.get(i).name))
+					isDupl = true;
+			}
+			
+			if(!isDupl) {
+				name = nameList[rIdx];
+				break;
+			}
 		}
-		
-		String name = nameList[rIdx];
 		
 		return name;
 	}
