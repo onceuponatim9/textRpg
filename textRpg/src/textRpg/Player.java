@@ -4,7 +4,7 @@ public class Player extends Unit {
 	static Guild guild = new Guild();
 	static Inventory inven = new Inventory();
 	
-	private int money;
+	static int money;
 	
 	public Player() {
 		
@@ -17,7 +17,7 @@ public class Player extends Unit {
 	
 	public void init() {
 		guild.setGuild();
-		money = 100; // 플레이어의 초기 잔고 설정
+		money = 100000; // 플레이어의 초기 잔고 설정
 	}
 
 	@Override
