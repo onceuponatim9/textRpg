@@ -9,22 +9,21 @@ public class Guild {
 	
 	public void setGuild() {
 		// name, level, hp, power, def, exp
-		guildList.add(new Player("name1", 9, 900, 50, 30, 0));
-		guildList.add(new Player("name2", 8, 800, 60, 30, 0));
-		guildList.add(new Player("name3", 7, 700, 70, 30, 0));
-		guildList.add(new Player("name4", 6, 600, 80, 30, 0));
-		guildList.add(new Player("name5", 5, 500, 90, 30, 0));
+		for(int i = 0; i < PARTY_SIZE; i++) {
+			int level = UnitManager.ran.nextInt(5) + 5;
+			int hp = 100 * level + 50;
+			int power = hp / 10 - 15;
+			int def = 30;
+			guildList.add(new Player(getName(), level, hp, power, def, 0));
+			guildList.get(i).party = true;
+		}
 		
 		partyList = new Unit[PARTY_SIZE];
 		
-		for(int i = 0; i < PARTY_SIZE; i++) {
-			int rIdx = UnitManager.ran.nextInt(PARTY_SIZE);
-			for(int j = 0; j < i; j++) {
-				if(guildList.get(j).party)
-					i--;
-			}
-			guildList.get(rIdx).party = true;
-			partyList[i] = guildList.get(i);
+		int idx = 0;
+		for(int i = 0; i < guildList.size(); i++) {
+			if(guildList.get(i).party)
+				partyList[idx++] = guildList.get(i);
 		}
 	}
 	
@@ -34,7 +33,7 @@ public class Guild {
 	
 	public void guildMenu() {
 		while(true) {
-			System.out.println("=============== [길드관리] ================");
+			System.out.println("=============== [길드 관리] ================");
 			System.out.println("[1.길드 목록]\t\t[2.길드원 추가]\t\t[3.길드원 삭제]");
 			System.out.println("[4.파티원 교체]\t\t[5.정렬]\t\t\t[0.뒤로가기]");
 			int sel = GameManager.scan.nextInt();
@@ -79,18 +78,102 @@ public class Guild {
 			System.out.print("[공격력 : " + guildList.get(i).power + "]");
 			System.out.print(" [방어력 : " + guildList.get(i).def + "]");
 			System.out.println(" [파티중 : " + guildList.get(i).party + "]");
+			System.out.println("[골드 : " + guildList.get(i).money + "]");
 		}
 		System.out.println("======================================");
 	}
 	
-	private void addUnit() {
-		// TODO Auto-generated method stub
+	private String[] getNameList() {
+		// nameList 만들기
+		String[] nameList = {"Aaron", "Chris", "Grace", "Emma",
+				"Uli", "Barbara", "John", "Victor",
+				"Amber", "Willie", "Aspen", "Linda",
+				"Mckenzie", "Quincy", "Rylie", "Sasha",
+				"Paige", "Madison", "Liam", "Hans",
+				"Irina", "Anastasha", "Chev", "Marko",
+				"Valarie", "Sinbad", "Kharl", "Taran"
+		};
 		
+		return nameList;
+	}
+	
+	private String getName() {
+		String[] nameList = getNameList();
+		int size = nameList.length;
+		int rIdx = -1;
+		
+		for(int i = 0; i < guildList.size(); i++) {
+			rIdx = UnitManager.ran.nextInt(size);
+			if(nameList[rIdx].equals(guildList.get(i).name))
+				i--;
+		}
+		
+		String name = nameList[rIdx];
+		
+		return name;
+	}
+	
+	private void addUnit() {
+		if(Player.money < 8000) {
+			System.out.println("골드가 부족합니다.");
+			return;
+		}
+		
+		// 길드원 추가하기
+		String name = getName();
+		int level = 1;
+		int rNum = UnitManager.ran.nextInt(8) + 1;
+		int hp = 50 * rNum + 50;
+		int power = hp / 10;
+		int def = hp / 20;
+		
+		Player temp = new Player(name, level, hp, power, def, 0);
+		
+		System.out.println("=====================================");
+	    System.out.print("[이름 : " + name + "]");
+	    System.out.print(" [레벨 : " + level + "]");
+	    System.out.print(" [체력 : " + hp);
+	    System.out.println(" / " + hp + "]");
+	    System.out.print("[공격력 : " + power + "]");
+	    System.out.println(" [방어력 : " + def + "]");
+	    System.out.println("길드원을 추가합니다.");
+	    System.out.println("=====================================");
+	    
+	    try {
+	    	Thread.sleep(500);
+	    } catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    
+	    guildList.add(temp);
+	    Player.money -= 8000;
 	}
 	
 	private void removeUnit() {
-		// TODO Auto-generated method stub
-		
+		printGuildList();
+		System.out.print("Player number to remove >> ");
+	    int sel = GameManager.scan.nextInt() - 1;
+	    
+	    if(sel < 0 || sel >= guildList.size()) {
+	    	System.out.println("유효하지 않은 길드원 번호입니다.");
+	    	return;
+	    }
+	    
+	    if(guildList.get(sel).party) {
+	    	System.out.println("파티 중인 길드원은 삭제할 수 없습니다.");
+	    	return;
+	    }
+	    
+	    String name = guildList.get(sel).name;
+	    System.out.println("선택한 길드원 [" + name + "]를 삭제합니다.");
+	    
+	    try {
+	    	Thread.sleep(500);
+	    } catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    
+	    guildList.remove(sel);
 	}
 	
 	private void changeParty() {
