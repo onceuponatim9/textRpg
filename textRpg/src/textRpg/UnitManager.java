@@ -10,7 +10,7 @@ public class UnitManager {
 	Vector<Unit> monsterList = new Vector<>();
 	
 	String path = "textRpg.";
-	String[] monsters = {"UnitWolf", "UnitGhost", "UnitBear", "UnitLion", "UnitDragon"};
+	String[] monsters = {"MonsterWolf", "MonsterGhost", "MonsterBear", "MonsterLion", "MonsterDragon"};
 	
 	public UnitManager() {
 //		playerList.add(new Player("name1", 900, 50));
