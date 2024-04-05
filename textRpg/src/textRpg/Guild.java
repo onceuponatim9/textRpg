@@ -83,6 +83,21 @@ public class Guild {
 		System.out.println("======================================");
 	}
 	
+	private void printParty() {
+		System.out.println("============= [파티원] =================");
+		for(int i = 0; i < partyList.length; i++) {
+			System.out.println("[" + (i + 1) + "번]");
+			System.out.print(" [이름 : " + partyList[i].name + "]");
+			System.out.print(" [레벨 : " + partyList[i].level + "]");
+			System.out.print(" [체력 : " + partyList[i].curHp);
+			System.out.println(" / " + partyList[i].maxHp + "]");
+			System.out.print("[공격력 : " + partyList[i].power + "]");
+			System.out.print(" [방어력 : " + partyList[i].def + "]");
+			System.out.println(" [파티중 : " + partyList[i].party + "]");
+		}
+		System.out.println("======================================");
+	}
+	
 	private String[] getNameList() {
 		// nameList 만들기
 		String[] nameList = {"Aaron", "Chris", "Grace", "Emma",
@@ -185,12 +200,50 @@ public class Guild {
 	}
 	
 	private void changeParty() {
-		// TODO Auto-generated method stub
+		printParty();
+		System.out.print("Player number to change >> ");
+		int num = GameManager.scan.nextInt() - 1;
 		
+		if(num < 0 || num >= guildList.size()) {
+			System.out.println("유효하지 않은 파티원 번호입니다.");
+			return;
+		}
+		
+		printGuildList();
+		System.out.print("Player number to attend the party >> ");
+		int newNum = GameManager.scan.nextInt() - 1;
+		
+		if(newNum < 0 || newNum >= guildList.size()) {
+			System.out.println("유효하지 않은 길드원 번호입니다.");
+			return;
+		}
+		
+		partyList[num].party = false;
+		guildList.get(newNum).party = true;
+		
+		int idx = 0;
+		for(int i = 0; i < guildList.size(); i++) {
+			if(guildList.get(i).party)
+				partyList[idx++] = guildList.get(i);
+		}
+		
+		try {
+			Thread.sleep(500);
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("====================================");
+		System.out.print("길드원 [" + partyList[num].name + "]");
+		System.out.print("를 [" + guildList.get(newNum).name + "]");
+		System.out.println("으로 교체 합니다.");
+		System.out.println("====================================");
 	}
+	
 	private void sortUnit() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < guildList.size(); i++) {
+			Player temp = guildList.get(i);
+		}
 	}
 	
 }
