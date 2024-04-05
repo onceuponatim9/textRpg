@@ -6,16 +6,23 @@ import java.util.Vector;
 public class UnitManager {
 	static Random ran = new Random();
 	
+	private final int MONSTER_SIZE = 3;
+	
 	Vector<Player> playerList = new Vector<>();
 	Vector<Unit> monsterList = new Vector<>();
 	
 	String path = "textRpg.";
-	String[] monsters = {"MonsterWolf", "MonsterGhost", "MonsterBear", "MonsterLion", "MonsterDragon"};
+	String[] allMonsters = {"MonsterWolf", "MonsterGhost", "MonsterBear", "MonsterLion", "MonsterDragon"};
+	String[] monsters;
 	
 	Player player = new Player();
 	
 	public UnitManager() {
 		
+	}
+	
+	public void init() {
+		player.init();
 	}
 	
 	public Vector<Player> getPlayerList() {
@@ -26,7 +33,24 @@ public class UnitManager {
 		return this.monsterList;
 	}
 	
+	public void setMonsters() {
+		monsters = new String[MONSTER_SIZE];
+		
+		for(int i = 0; i < monsters.length; i++) {
+			int rNum = ran.nextInt(MONSTER_SIZE);
+			String name = allMonsters[rNum];
+			
+			for(int j = 0; j < i; j++) {
+				if(monsters[j].equals(name))
+					break;
+			}
+			monsters[i] = name;
+		}
+	}
+	
 	public void makeMonster() {
+		setMonsters();
+		
 		for(int i = 0; i < monsters.length; i++) {
 			try {
 				Class<?> clazz = Class.forName(path + monsters[i]);
