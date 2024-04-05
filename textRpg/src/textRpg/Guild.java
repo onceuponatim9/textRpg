@@ -243,7 +243,21 @@ public class Guild {
 	private void sortUnit() {
 		for(int i = 0; i < guildList.size(); i++) {
 			Player temp = guildList.get(i);
+			int idx = i;
+			
+			for(int j = i; j < guildList.size(); j++) {
+				if(temp.level < guildList.get(j).level) {
+					temp = guildList.get(j);
+					idx = j;
+				}
+			}
+			
+			Player temp2 = guildList.get(idx);
+			guildList.set(idx, guildList.get(i));
+			guildList.set(i, temp2);
 		}
+		
+		System.out.println("길드원 정렬이 완료되었습니다.");
 	}
 	
 }
