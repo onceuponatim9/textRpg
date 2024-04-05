@@ -48,7 +48,7 @@ public class UnitManager {
 		}
 	}
 	
-	public void makeMonster() {
+	public void makeMonsters() {
 		setMonsters();
 		
 		for(int i = 0; i < monsters.length; i++) {
