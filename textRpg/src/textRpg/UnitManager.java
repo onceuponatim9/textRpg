@@ -37,7 +37,7 @@ public class UnitManager {
 		monsters = new String[MONSTER_SIZE];
 		
 		for(int i = 0; i < monsters.length; i++) {
-			int rNum = ran.nextInt(MONSTER_SIZE);
+			int rNum = ran.nextInt(allMonsters.length);
 			String name = allMonsters[rNum];
 			
 			for(int j = 0; j < i; j++) {
