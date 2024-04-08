@@ -151,7 +151,7 @@ public class StageBattle extends Stage {
 			// player와 monster 중에 하나라도 전멸하면
 			if(playerDead == Player.getGuildSize() || monsterDead == monsterList.size()) {
 				printWinner();
-				GameManager.isRun = false;
+				//GameManager.isRun = false;
 				break;
 			}
 		}
@@ -161,9 +161,9 @@ public class StageBattle extends Stage {
 	
 	private void printWinner() {
 		if(playerDead == Player.getGuildSize())
-			System.out.println("monster들에게 졌습니다.");
+			System.err.println("monster들에게 졌습니다.");
 		else
-			System.out.println("monster를 모두 처치했습니다.");
+			System.err.println("monster를 모두 처치했다!!!");
 	}
 
 }
