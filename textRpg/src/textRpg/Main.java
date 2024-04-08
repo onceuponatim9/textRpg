@@ -2,11 +2,10 @@ package textRpg;
 
 public class Main {
 	public static void main(String[] args) {
-		GameManager gm = new GameManager();
-		StageBattle battle = new StageBattle();
+		//GameManager gm = new GameManager();
+		//StageBattle battle = new StageBattle();
 		StageTitle game = new StageTitle();
-		
-		System.out.println("==== TEXT RPG ====");
+		GameManager.instance.init();
 		
 		// 게임 시작
 		while(true) {
@@ -16,12 +15,9 @@ public class Main {
 			}
 		}
 		
-		// 게임 준비
-		battle.init();
-		
 		// 게임 진행
 		while(true) {
-			boolean isRun = gm.changeStage();
+			boolean isRun = GameManager.instance.changeStage();
 			if(!isRun)
 				break;
 		}
