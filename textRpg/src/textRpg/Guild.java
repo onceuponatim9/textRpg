@@ -72,6 +72,10 @@ public class Guild {
 	}
 	
 	public void printGuildList() {
+		if(guildList == null) {
+			System.out.println("길드원이 존재하지 않습니다.");
+			return;
+		}
 		System.out.println("============= [길드원] =================");
 		for(int i = 0; i < guildList.size(); i++) {
 			System.out.println("[" + (i + 1) + "번]");
@@ -88,6 +92,10 @@ public class Guild {
 	}
 	
 	private void printParty() {
+		if(partyList == null) {
+			System.out.println("파티원이 존재하지 않습니다.");
+			return;
+		}
 		System.out.println("============= [파티원] =================");
 		for(int i = 0; i < partyList.length; i++) {
 			System.out.println("[" + (i + 1) + "번]");
@@ -110,7 +118,25 @@ public class Guild {
 				"Mckenzie", "Quincy", "Rylie", "Sasha",
 				"Paige", "Madison", "Liam", "Hans",
 				"Irina", "Anastasha", "Chev", "Marko",
-				"Valarie", "Sinbad", "Kharl", "Taran"
+				"Valarie", "Sinbad", "Kharl", "Taran", // 28
+				"Addison", "Hanson", "Billie", "Blade",
+				"Brighton", "Devon", "Klaus", "Nichole",
+				"Sylvia", "Lauren", "Diana", "Kennice", // 40
+				"Graham", "Albert", "Giselle", "Kyler",
+				"Millie", "Tim", "Taylor", "Richard",
+				"Joseph", "Robinson", "Whitney", "Joyce",
+				"Peter", "Ellie", "Paul", "Stephanie",
+				"Benjamin", "Jimmy", "Jessie", "James",
+				"Charles", "Daniel", "Marie", "Sandra",
+				"Ashley", "Emily", "Angela", "Brenda",
+				"Amy", "Sharon", "Laura", "Noah",
+				"Mason", "Natalie", "Steven", "Emily",
+				"Mark", "Marcus", "Romeo", "Juliet", // 80
+				"Julia", "Tracy", "Ryott", "Scarlet",
+				"Lydia", "Dahlia", "Chloe", "Britney",
+				"Brooke", "James", "Boris", "Ivanka",
+				"Aurora", "Alina", "Justin", "Alisa",
+				"Lucin", "Jack", "Henry", "Anders" // 100
 		};
 		
 		return nameList;
@@ -177,6 +203,11 @@ public class Guild {
 	}
 	
 	private void removeUnit() {
+		if(guildList == null) {
+			System.out.println("길드원이 존재하지 않습니다.");
+			return;
+		}
+		
 		printGuildList();
 		System.out.print("Player number to remove >> ");
 	    int sel = GameManager.scan.nextInt() - 1;
@@ -204,6 +235,11 @@ public class Guild {
 	}
 	
 	private void changeParty() {
+		if(guildList == null) {
+			System.out.println("길드원이 존재하지 않습니다.");
+			return;
+		}
+		
 		printParty();
 		System.out.print("Player number to change >> ");
 		int num = GameManager.scan.nextInt() - 1;
@@ -245,6 +281,11 @@ public class Guild {
 	}
 	
 	private void sortUnit() {
+		if(guildList == null) {
+			System.out.println("길드원이 존재하지 않습니다.");
+			return;
+		}
+		
 		for(int i = 0; i < guildList.size(); i++) {
 			Player temp = guildList.get(i);
 			int idx = i;
