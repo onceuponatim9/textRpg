@@ -9,6 +9,9 @@ public class Guild {
 	
 	public void setGuild() {
 		// name, level, hp, power, def, exp
+		if(guildList.size() > 0)
+			return;
+		
 		for(int i = 0; i < PARTY_SIZE; i++) {
 			int level = UnitManager.ran.nextInt(5) + 5;
 			int hp = 100 * level + 50;
