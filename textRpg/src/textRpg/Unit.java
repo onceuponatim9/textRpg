@@ -10,8 +10,10 @@ public abstract class Unit {
 	int exp; // 경험치
 	boolean party; // 파티 가입 여부
 	Item weapon; // 무기
-	Item armor; // 갑옷
-	Item ring; // 장신구
+	Item armour; // 갑옷
+	Item clothes; // 옷
+	Item shoes; // 신발
+	Item accessory; // 장신구
 	int money;
 	
 	public Unit() {
@@ -28,8 +30,10 @@ public abstract class Unit {
 		this.exp = exp;
 		party = false;
 		weapon = null;
-		armor = null;
-		ring = null;
+		armour = null;
+		clothes = null;
+		shoes = null;
+		accessory = null;
 	}
 	
 	public void init(String name, int hp, int power) {
@@ -38,11 +42,11 @@ public abstract class Unit {
 	}
 	
 	public void attack(Monster unit) {
-		unit.curhp -= power;
+		unit.curHp -= power;
 		System.out.println("[" + name + "]이 " + "[" + unit.name + "]에게 " + power + "의 데미지를 입힙니다.");
 		
-		if(unit.curhp <= 0) {
-			unit.curhp = 0;
+		if(unit.curHp <= 0) {
+			unit.curHp = 0;
 			System.out.println("[" + unit.name + "]을 처치했습니다.");
 		}
 	}
