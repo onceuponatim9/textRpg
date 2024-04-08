@@ -7,11 +7,11 @@ public class Inventory {
 	ArrayList<Item> myItems = new ArrayList<>();
 	ArrayList<Item> itemList;
 	
-	public Inventory() {
-		Shop shop = new Shop();
-		itemList = shop.getItemList();
-		myItems = Player.getItemList();
-	}
+//	public Inventory() {
+//		Shop shop = new Shop();
+//		itemList = shop.getItemList();
+//		myItems = Player.getItemList();
+//	}
 	
 	public void inventoryMenu() {
 		while(true) {
