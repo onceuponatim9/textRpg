@@ -23,7 +23,7 @@ public class UnitManager {
 		
 	}
 	
-	public void init() {
+	void init() {
 		player.init();
 	}
 	
@@ -42,9 +42,14 @@ public class UnitManager {
 			int rNum = ran.nextInt(allMonsters.length);
 			String name = allMonsters[rNum];
 			
+			boolean isDupl = false;
 			for(int j = 0; j < i; j++) {
 				if(monsters[j].equals(name))
-					break;
+					isDupl = true;
+			}
+			if(isDupl) {
+				i--;
+				continue;
 			}
 			monsters[i] = name;
 		}
@@ -56,10 +61,10 @@ public class UnitManager {
 		for(int i = 0; i < monsters.length; i++) {
 			try {
 				Class<?> clazz = Class.forName(path + monsters[i]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
+				Object obj = clazz.newInstance();
 				
-				int hp = ran.nextInt(150) + 100;
-				int power = ran.nextInt(20) + 10;
+				int hp = ran.nextInt(500) + 100;
+				int power = ran.nextInt(40) + 40;
 				
 				// 새로운 몬스터 생성
 				Monster temp = (Monster) obj;
