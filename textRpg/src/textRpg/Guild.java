@@ -31,6 +31,10 @@ public class Guild {
 		return guildList.get(num);
 	}
 	
+	public Vector<Player> getGuildList() {
+		return guildList;
+	}
+	
 	public void guildMenu() {
 		while(true) {
 			System.out.println("=============== [길드 관리] ================");
@@ -67,7 +71,7 @@ public class Guild {
 		guildList.get(index).printStatus();
 	}
 	
-	private void printGuildList() {
+	public void printGuildList() {
 		System.out.println("============= [길드원] =================");
 		for(int i = 0; i < guildList.size(); i++) {
 			System.out.println("[" + (i + 1) + "번]");
