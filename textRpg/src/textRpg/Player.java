@@ -15,7 +15,6 @@ public class Player extends Unit {
 
 	public Player(String name, int level, int hp, int power, int def, int exp) {
 		super(name, level, hp, power, def, exp);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void init() {
@@ -43,7 +42,7 @@ public class Player extends Unit {
 	}
 	
 	public static ArrayList<Item> getItemList() {
-		return inven.itemList;
+		return inven.myItems;
 	}
 	
 	public static Player getGuildUnit(int num) {
@@ -51,11 +50,16 @@ public class Player extends Unit {
 	}
 	
 	public int getItemSize() {
-		return inven.itemList.size();
+		return inven.myItems.size();
 	}
 
 	public static int getGuildSize() {
 		return guild.guildList.size();
+	}
+
+	public void guildMenu() {
+		// TODO Auto-generated method stub
+		guild.guildMenu();
 	}
 
 }
