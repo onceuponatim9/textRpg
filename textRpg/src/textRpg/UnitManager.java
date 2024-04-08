@@ -8,8 +8,10 @@ public class UnitManager {
 	
 	private final int MONSTER_SIZE = 3;
 	
+	static UnitManager instance = new UnitManager();
+	
 	Vector<Player> playerList = new Vector<>();
-	Vector<Unit> monsterList = new Vector<>();
+	Vector<Monster> monsterList = new Vector<>();
 	
 	String path = "textRpg.";
 	String[] allMonsters = {"MonsterWolf", "MonsterGhost", "MonsterBear", "MonsterLion", "MonsterDragon"};
@@ -29,7 +31,7 @@ public class UnitManager {
 		return this.playerList;
 	}
 	
-	public Vector<Unit> getMonsterList() {
+	public Vector<Monster> getMonsterList() {
 		return this.monsterList;
 	}
 	
@@ -60,7 +62,7 @@ public class UnitManager {
 				int power = ran.nextInt(20) + 10;
 				
 				// 새로운 몬스터 생성
-				Unit temp = (Unit) obj;
+				Monster temp = (Monster) obj;
 				String name = temp.name;
 				temp.init(name, hp, power);
 				monsterList.add(temp);
