@@ -9,6 +9,8 @@ public class GameManager {
 	static Scanner scan = new Scanner(System.in);
 	static Random ran = new Random();
 	
+	static GameManager instance = new GameManager();
+	
 	Map<String, Stage> stageList = new HashMap<String, Stage>();
 	
 	static String nextStage = "";
@@ -16,7 +18,11 @@ public class GameManager {
 	
 	static boolean isRun = true;
 	
-	public GameManager() {
+	GameManager() {
+		
+	}
+	
+	public void init() {
 		stageList.put("StageStart", new StageTitle());
 		stageList.put("BATTLE", new StageBattle());
 		stageList.put("LOBBY", new StageLobby());
