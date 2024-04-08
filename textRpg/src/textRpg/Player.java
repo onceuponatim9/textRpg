@@ -1,5 +1,8 @@
 package textRpg;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 public class Player extends Unit {
 	static Guild guild = new Guild();
 	static Inventory inven = new Inventory();
@@ -33,6 +36,26 @@ public class Player extends Unit {
 	public void printStatus() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Vector<Player> getGuildList() {
+		return guild.guildList;
+	}
+	
+	public static ArrayList<Item> getItemList() {
+		return inven.itemList;
+	}
+	
+	public static Player getGuildUnit(int num) {
+		return guild.getGuildUnit(num);
+	}
+	
+	public int getItemSize() {
+		return inven.itemList.size();
+	}
+
+	public static int getGuildSize() {
+		return guild.guildList.size();
 	}
 
 }
