@@ -7,8 +7,8 @@ public class MonsterGhost extends Monster {
 
 	@Override
 	public void skill() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "가 투명 망토 스킬을 썼다.");
+		// 공격 막기
 	}
 
 }

@@ -7,8 +7,7 @@ public class MonsterBear extends Monster {
 
 	@Override
 	public void skill() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "이 으르렁 스킬을 썼다.");
 	}
 
 }

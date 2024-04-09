@@ -7,7 +7,7 @@ public class MonsterDragon extends Monster {
 
 	@Override
 	public void skill() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "이 불꽃 휘날리기 스킬을 썼다.");
+		// 공격력 두 배
 	}
 }

@@ -7,8 +7,8 @@ public class MonsterWolf extends Monster {
 
 	@Override
 	public void skill() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "가 울음소리 스킬을 썼다.");
+		// 공격력 1.5배
 	}
 
 }
