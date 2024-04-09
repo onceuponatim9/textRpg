@@ -53,10 +53,19 @@ public class ShopManager {
 						count++;
 						
 						if(count == num) {
-							
+							Player.inven.addItem(itemList.get(i));
+							Player.money -= itemList.get(i).price;
+							System.out.println("[" + itemList.get(i).name + "]을 구입했습니다.");
+							try {
+								Thread.sleep(500);
+							} catch(InterruptedException e) {
+								e.printStackTrace();
+							}
+							break;
 						}
 					}
 				}
+				
 			}
 		}
 	}
