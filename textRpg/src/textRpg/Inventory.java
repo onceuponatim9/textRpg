@@ -36,7 +36,8 @@ public class Inventory {
 	}
 	
 	public void buyItem() {
-		
+		ShopManager shopManager = new ShopManager();
+		shopManager.shopMenu();
 	}
 	
 	public void equipItem() {
