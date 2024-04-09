@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public class Shop {
 	ArrayList<Item> itemList = new ArrayList<>();
 	
-	public ArrayList<Item> getItemList() {
-		return this.itemList;
-	}
-	
 	public Shop() {
 		// Weapon
 		Item item = new Item();
@@ -309,6 +305,10 @@ public class Shop {
 		item.price = 1000;
 		itemList.add(item);
 		
+	}
+	
+	public ArrayList<Item> getItemList() {
+		return this.itemList;
 	}
 
 }
