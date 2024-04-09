@@ -1,11 +1,15 @@
 package textRpg;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 public class UserManager {
-	private static final Map<User, Player> map = new HashMap<User, Player>();
+	private final static Map<User, Vector<Player>> map = new HashMap<User, Vector<Player>>();
 	
 	public UserManager() {
 		
@@ -16,15 +20,36 @@ public class UserManager {
 		return instance;
 	}
 	
-	public Map cloneMap() {
+	public Map<User, Vector<Player>> cloneMap() {
 		return map;
 	}
 	
 	public User createUser(String name, String id, String password) {
 		User user = new User(name, id, password);
-		Player player = new Player();
-		map.put(user, player);
+		System.out.println("new User 완료");
+//		Player player = new Player();
+//		player.init();
+//		UnitManager.instance.init();
+		Guild guild = new Guild();
+		guild.setGuild();
+		Vector<Player> guildList = Guild.getGuildList();
+		
+		map.put(user, guildList);
+		sortByName();
+		for(int i = 0; i < guildList.size(); i++) {
+			System.out.println(guildList.get(i).name);
+		}
 		return user.clone();
+	}
+	
+//	public void setGuildList(Vector<Player> guildList, Vector<Player> list) {
+//		//guildList = getGuildListByUser(user);
+//		guildList = list;
+//	}
+	
+	public void sortByName() {
+		List keySet = new ArrayList(map.keySet());
+		Collections.sort(keySet, Comparator.comparing(User::getId));
 	}
 	
 	public void removeUser(User user) {
@@ -40,7 +65,6 @@ public class UserManager {
 	}
 	
 	public User findUserById(String id) {
-		
 		for (User user : map.keySet()) {
 			if(user.getId().equals(id))
 				return user;
@@ -73,8 +97,13 @@ public class UserManager {
 		return log;
 	}
 	
-	public int getUserCount() {
-		return this.map.size();
+	public static Vector<Player> getGuildListByUser(User user) {
+		Vector<Player> guildList = map.get(user);
+		return guildList;
+	}
+	
+	public static int getUserCount() {
+		return map.size();
 	}
 	
 }
