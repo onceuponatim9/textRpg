@@ -24,7 +24,6 @@ public class Player extends Unit {
 
 	@Override
 	public void skill() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -33,12 +32,12 @@ public class Player extends Unit {
 	}
 
 	public void printStatus() {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	public Vector<Player> getGuildList() {
-		return guild.guildList;
+		//return guild.guildList;
+		return Guild.getGuildList();
 	}
 	
 	public static ArrayList<Item> getItemList() {
@@ -54,11 +53,11 @@ public class Player extends Unit {
 	}
 
 	public static int getGuildSize() {
-		return guild.guildList.size();
+		//return Guild.guildList.size();
+		return guild.getGuildSize();
 	}
 
 	public void guildMenu() {
-		// TODO Auto-generated method stub
 		guild.guildMenu();
 	}
 
