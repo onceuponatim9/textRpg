@@ -12,17 +12,19 @@ public class StageBattle extends Stage {
 	boolean isBattle = false;
 	boolean isTurn = true;
 	
+	//Player player = new Player();
+	
 	public StageBattle() {
 		um = UnitManager.instance;
 	}
 	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		um.monsterList.clear();
 		um.makeMonsters();
-		um.player = null;
-		um.player = new Player();
+		//um.player = null;
+		//um.player = new Player();
+		Guild.guildList = UserManager.getGuildListByUser(GameManager.curUser);
 		monsterList = null;
 		monsterList = um.monsterList;
 	}
