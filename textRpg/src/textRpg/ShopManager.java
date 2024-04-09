@@ -36,6 +36,11 @@ public class ShopManager {
 				} else if(kind == Item.ACCESSORY) {
 					System.out.println("========== [악세서리] ==========");
 					
+				} else if(kind == 0) {
+					break;
+					
+				} else {
+					continue;
 				}
 				
 				printItems(kind);
