@@ -4,12 +4,23 @@ import java.util.Vector;
 
 public class Guild {
 	private final int PARTY_SIZE = 3;
-	Vector<Player> guildList = new Vector<>();
+	private UserManager um = UserManager.getInstance();
+	//Vector<Player> guildList = new Vector<>();
+	static Vector<Player> guildList = null;
 	Unit[] partyList;
+	
+	public Guild() {
+		guildList = UserManager.getGuildListByUser(GameManager.curUser);
+	}
 	
 	public void setGuild() {
 		// name, level, hp, power, def, exp
-		if(guildList.size() > 0)
+//		if(guildList.size() > 0)
+//			return;
+		
+		if(guildList == null)
+			guildList = new Vector<Player>();
+		else if(guildList.size() >= PARTY_SIZE)
 			return;
 		
 		for(int i = 0; i < PARTY_SIZE; i++) {
@@ -19,6 +30,9 @@ public class Guild {
 			int def = 30;
 			guildList.add(new Player(getName(), level, hp, power, def, 0));
 			guildList.get(i).party = true;
+			
+//			if(guildList.size() == 3)
+//			break;
 		}
 		
 		partyList = new Unit[PARTY_SIZE];
@@ -34,8 +48,12 @@ public class Guild {
 		return guildList.get(num);
 	}
 	
-	public Vector<Player> getGuildList() {
+	public static Vector<Player> getGuildList() {
 		return guildList;
+	}
+	
+	public int getGuildSize() {
+		return guildList.size();
 	}
 	
 	public void guildMenu() {
@@ -154,11 +172,18 @@ public class Guild {
 		while(true) {
 			rIdx = UnitManager.ran.nextInt(size);
 			boolean isDupl = false;
-			
-			for(int i = 0; i < guildList.size(); i++) {
-				if(nameList[rIdx].equals(guildList.get(i).name))
-					isDupl = true;
+			for(int i = 0; i < UserManager.getUserCount(); i++) {
+				User temp = um.getUserByLog(i);
+				Vector<Player> list = UserManager.getGuildListByUser(temp);
+				for(int j = 0; j < list.size(); j++) {
+					if(nameList[rIdx].equals(list.get(j).name))
+						isDupl = true;
+				}
 			}
+//			for(int i = 0; i < guildList.size(); i++) {
+//				if(nameList[rIdx].equals(guildList.get(i).name))
+//					isDupl = true;
+//			}
 			
 			if(!isDupl) {
 				name = nameList[rIdx];
