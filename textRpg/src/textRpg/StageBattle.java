@@ -89,12 +89,20 @@ public class StageBattle extends Stage {
 		if(m.curHp <= 0)
 			return;
 		
+		int mNum = GameManager.ran.nextInt(5);
+		if(mNum == 0) {
+			m.skill();
+			return;
+		}
+		
 		// monster가 player 공격
 		int idx = GameManager.ran.nextInt(Player.getGuildSize());
 		
 		if(Player.getGuildUnit(idx).curHp > 0) {
 			m.attack(Player.getGuildUnit(idx));
 		}
+		
+		
 	}
 	
 	public void checkAlive() {
